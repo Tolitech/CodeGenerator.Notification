@@ -50,8 +50,10 @@ namespace Tolitech.CodeGenerator.Notification.Tests
         public void NotificationResult_AddMessageOnTop_Valid()
         {
             var result = new NotificationResult();
-            result.AddMessageOnTop("message");
+            result.AddMessage("message1");
+            result.AddMessageOnTop("message2");
             Assert.True(result.IsValid);
+            Assert.True(result.Messages.First().Message == "message2");
         }
 
         [Fact(DisplayName = "NotificationResult - AddErrorWithException - Invalid")]
@@ -98,16 +100,20 @@ namespace Tolitech.CodeGenerator.Notification.Tests
         public void NotificationResult_AddErrorOnTop_Invalid()
         {
             var result = new NotificationResult();
-            result.AddErrorOnTop("message");
+            result.AddError("message1");
+            result.AddErrorOnTop("message2");
             Assert.False(result.IsValid);
+            Assert.True(result.Errors.First().Message == "message2");
         }
 
         [Fact(DisplayName = "NotificationResult - InsertMessageWithObject - Valid")]
         public void NotificationResult_InsertMessageWithObject_Valid()
         {
             var result = new NotificationResult();
-            result.InsertMessage(0, new NotificationMessage("key", "message", "info"));
+            result.AddMessage("message1");
+            result.InsertMessage(0, new NotificationMessage("key", "message2", "info"));
             Assert.True(result.IsValid);
+            Assert.True(result.Messages.First().Message == "message2");
         }
 
         [Fact(DisplayName = "NotificationResult - InsertMessageWithTwoParameters - Valid")]
@@ -130,8 +136,10 @@ namespace Tolitech.CodeGenerator.Notification.Tests
         public void NotificationResult_InsertMessage_Invalid()
         {
             var result = new NotificationResult();
-            result.InsertMessage(0, new NotificationMessage("key", "message", "error"));
+            result.AddError("message1");
+            result.InsertMessage(0, new NotificationMessage("key", "message2", "error"));
             Assert.False(result.IsValid);
+            Assert.True(result.Errors.First().Message == "message2");
         }
 
         [Fact(DisplayName = "NotificationResult - InsertMessageWithTwoParameters - Invalid")]
@@ -211,6 +219,8 @@ namespace Tolitech.CodeGenerator.Notification.Tests
         {
             var result = new NotificationResult();
             result.AddMessage("message");
+            Assert.True(result.Messages.Count() == 1);
+
             result.ClearMessages();
             Assert.True(result.Messages.Count() == 0);
         }
@@ -220,6 +230,8 @@ namespace Tolitech.CodeGenerator.Notification.Tests
         {
             var result = new NotificationResult();
             result.AddError("message");
+            Assert.True(result.Errors.Count() == 1);
+
             result.ClearErrors();
             Assert.True(result.Errors.Count() == 0);
         }
@@ -230,6 +242,8 @@ namespace Tolitech.CodeGenerator.Notification.Tests
             var result = new NotificationResult();
             var message = new NotificationMessage("message");
             result.AddMessage(message);
+            Assert.True(result.Messages.Count() == 1);
+
             result.RemoveMessage(message);
             Assert.True(result.Messages.Count() == 0);
         }
@@ -240,6 +254,8 @@ namespace Tolitech.CodeGenerator.Notification.Tests
             var result = new NotificationResult();
             var message = new NotificationMessage("key", "message", "info");
             result.AddMessage(message);
+            Assert.True(result.Messages.Count() == 1);
+            
             result.RemoveMessage("key");
             Assert.True(result.Messages.Count() == 0);
         }
@@ -250,6 +266,8 @@ namespace Tolitech.CodeGenerator.Notification.Tests
             var result = new NotificationResult();
             var error = new NotificationError("message");
             result.AddError(error);
+            Assert.True(result.Errors.Count() == 1);
+            
             result.RemoveError(error);
             Assert.True(result.Errors.Count() == 0);
         }
@@ -260,6 +278,8 @@ namespace Tolitech.CodeGenerator.Notification.Tests
             var result = new NotificationResult();
             var error = new NotificationError("key", "message");
             result.AddError(error);
+            Assert.True(result.Errors.Count() == 1);
+            
             result.RemoveError("key");
             Assert.True(result.Errors.Count() == 0);
         }
