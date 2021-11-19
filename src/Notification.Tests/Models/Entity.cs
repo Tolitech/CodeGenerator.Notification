@@ -3,7 +3,7 @@ using FluentValidation.Results;
 
 namespace Tolitech.CodeGenerator.Notification.Tests.Models
 {
-    public abstract class ModelBase : Notifiable
+    public abstract class Entity : Notifiable
     {
         public void Validate(ValidationResult result)
         {

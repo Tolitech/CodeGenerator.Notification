@@ -10,8 +10,8 @@ namespace Tolitech.CodeGenerator.Notification.Tests
         [Fact(DisplayName = "NotificationResult - MaximumLength - Invalid")]
         public void NotificationResult_MaximumLength_Invalid()
         {
-            var model = new TestModel() { Name = "This name cannot contain more than 10 characters." };
-            Assert.False(model.IsValid());
+            var person = new Person("This name cannot contain more than 10 characters.");
+            Assert.False(person.IsValid());
         }
 
         [Fact(DisplayName = "NotificationResult - AddMessageWithObject - Valid")]

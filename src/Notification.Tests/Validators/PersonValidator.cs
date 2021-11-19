@@ -4,9 +4,9 @@ using Tolitech.CodeGenerator.Notification.Tests.Models;
 
 namespace Tolitech.CodeGenerator.Notification.Tests.Validators
 {
-    public class TestValidator : AbstractValidator<TestModel>
+    public class PersonValidator : AbstractValidator<Person>
     {
-        public TestValidator()
+        public PersonValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
