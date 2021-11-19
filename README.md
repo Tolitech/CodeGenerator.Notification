@@ -10,7 +10,52 @@ Tolitech Code Generator Tool: [http://www.tolitech.com.br](https://www.tolitech.
 Examples:
 
 ```
-var person = new Person("Name");
+public abstract class Entity : Notifiable
+{
+    public void Validate(ValidationResult result)
+    {
+        NotificationResult.Clear();
+
+        foreach (var error in result.Errors)
+        {
+            NotificationResult.AddError(error.ErrorMessage);
+        }
+    }
+}
+```
+
+```
+public class Person : Entity
+{
+    public Person(string name)
+    {
+        Name = name;
+    }
+
+    public string Name { get; set; }
+
+    public override void Validate()
+    {
+        var validator = new TestValidator();
+        Validate(validator.Validate(this));
+    }
+}
+```
+
+```
+public class PersonValidator : AbstractValidator<Person>
+{
+    public PersonValidator()
+    {
+        RuleFor(x => x.Name)
+            .NotEmpty()
+            .MaximumLength(10);
+    }
+}
+```
+
+```
+var person = new Person(name: "Name");
 bool isValid = person.IsValid();
 ```
 
@@ -22,6 +67,21 @@ result.AddMessage("message");
 ```
 var result = new NotificationResult();
 result.AddError(new Exception("exception"));
+var ex = result.GetException();
+```
+
+```
+var result = new NotificationResult();
+result.AddMessage("message1");
+result.AddMessage("message2");
+result.AddMessageOnTop("message3");
+bool isValid = result.IsValid;
+```
+
+```
+var result = new NotificationResult();
+result.AddError("message");
+bool isValid = result.IsValid;
 ```
 
 In unit tests, it is possible to know the dozens of variations and possibilities that exist between notifications of error, success, warning and the traffic of other objects and relevant information. 
