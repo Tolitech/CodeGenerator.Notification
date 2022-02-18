@@ -36,17 +36,17 @@ namespace Tolitech.CodeGenerator.Notification
 
         #region Methods
 
-        public void AddMessage(string message)
+        public void AddMessage(string? message)
         {
             _messages.Add(new NotificationMessage(message));
         }
 
-        public void AddMessageOnTop(string message)
+        public void AddMessageOnTop(string? message)
         {
             _messages.Insert(0, new NotificationMessage(message));
         }
 
-        public void AddError(string errorMessage)
+        public void AddError(string? errorMessage)
         {
             _errors.Add(new NotificationError(errorMessage));
         }
@@ -56,12 +56,12 @@ namespace Tolitech.CodeGenerator.Notification
             _errors.Add(new NotificationError(ex));
         }
 
-        public void AddErrorOnTop(string errorMessage)
+        public void AddErrorOnTop(string? errorMessage)
         {
             _errors.Insert(0, new NotificationError(errorMessage));
         }
 
-        public void AddMessage(string message, string type)
+        public void AddMessage(string? message, string? type)
         {
             if (!string.IsNullOrEmpty(type) && type.ToLower() == "error")
                 _errors.Add(new NotificationError(message));
@@ -69,12 +69,12 @@ namespace Tolitech.CodeGenerator.Notification
                 _messages.Add(new NotificationMessage(message, type));
         }
 
-        public void AddError(string key, string errorMessage)
+        public void AddError(string? key, string? errorMessage)
         {
             _errors.Add(new NotificationError(key, errorMessage));
         }
 
-        public void AddError(string key, Exception ex)
+        public void AddError(string? key, Exception ex)
         {
             _errors.Add(new NotificationError(key, ex));
         }
@@ -100,12 +100,12 @@ namespace Tolitech.CodeGenerator.Notification
             }
         }
 
-        public void InsertMessage(int index, string message)
+        public void InsertMessage(int index, string? message)
         {
             _messages.Insert(index, new NotificationMessage(message));
         }
 
-        public void InsertError(int index, string errorMessage)
+        public void InsertError(int index, string? errorMessage)
         {
             _errors.Insert(index, new NotificationError(errorMessage));
         }
@@ -115,7 +115,7 @@ namespace Tolitech.CodeGenerator.Notification
             _errors.Insert(index, new NotificationError(ex));
         }
 
-        public void InsertMessage(int index, string message, string type)
+        public void InsertMessage(int index, string? message, string? type)
         {
             if (!string.IsNullOrEmpty(type) && type.ToLower() == "error")
                 _errors.Insert(index, new NotificationError(message));
@@ -123,12 +123,12 @@ namespace Tolitech.CodeGenerator.Notification
                 _messages.Insert(index, new NotificationMessage(message, type));
         }
 
-        public void InsertError(int index, string key, string errorMessage)
+        public void InsertError(int index, string? key, string? errorMessage)
         {
             _errors.Insert(index, new NotificationError(key, errorMessage));
         }
 
-        public void InsertError(int index, string key, Exception ex)
+        public void InsertError(int index, string? key, Exception ex)
         {
             _errors.Insert(index, new NotificationError(key, ex));
         }
@@ -161,7 +161,7 @@ namespace Tolitech.CodeGenerator.Notification
                 _errors.Remove(error);
         }
 
-        public void RemoveMessage(string key)
+        public void RemoveMessage(string? key)
         {
             var items = _messages.Where(x => x.Key == key).ToList();
             for (int i = items.Count - 1; i >= 0; i--)
@@ -170,7 +170,7 @@ namespace Tolitech.CodeGenerator.Notification
             }
         }
 
-        public void RemoveError(string key)
+        public void RemoveError(string? key)
         {
             var items = _errors.Where(x => x.Key == key).ToList();
             for (int i = items.Count - 1; i >= 0; i--)
