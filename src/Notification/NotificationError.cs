@@ -2,7 +2,7 @@
 
 namespace Tolitech.CodeGenerator.Notification
 {
-    public class NotificationError : NotificationMessage
+    public class NotificationError : NotificationMessage, INotificationError
     {
         protected Exception? Exception { get; set; }
 

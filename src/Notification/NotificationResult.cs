@@ -36,6 +36,11 @@ namespace Tolitech.CodeGenerator.Notification
 
         #region Methods
 
+        public static NotificationResult Ok()
+        {
+            return new NotificationResult();
+        }
+
         public void AddMessage(string? message)
         {
             _messages.Add(new NotificationMessage(message));
@@ -196,5 +201,32 @@ namespace Tolitech.CodeGenerator.Notification
         }
 
         #endregion
+    }
+
+    public class NotificationResult<T> : NotificationResult
+    {
+        public NotificationResult() { }
+
+        public NotificationResult(T value)
+        {
+            Value = value;
+        }
+
+        public T? Value { get; set; }
+
+        public void SetValue(T value)
+        {
+            Value = value;
+        }
+
+        public static new NotificationResult<T> Ok()
+        {
+            return new NotificationResult<T>();
+        }
+
+        public static NotificationResult<T> Ok(T value)
+        {
+            return new NotificationResult<T>(value);
+        }
     }
 }

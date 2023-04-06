@@ -2,13 +2,13 @@
 
 namespace Tolitech.CodeGenerator.Notification
 {
-    public class NotificationMessage
+    public class NotificationMessage : INotificationMessage
     {
-        public string? Key { get; set; }
+        public string? Key { get; init; }
 
-        public string? Message { get; set; }
+        public string? Message { get; init; }
 
-        public string? Type { get; set; }
+        public string? Type { get; init; }
 
         public NotificationMessage(string? message)
         {

@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha-2</Version>
+    <Version>1.0.0-alpha-3</Version>
     <Authors>Tolitech</Authors>
     <Description>Notification library for Tolitech Code Generator.</Description>
     <PackageProjectUrl>https://www.tolitech.com.br</PackageProjectUrl>
@@ -16,6 +16,7 @@
     <PackageReleaseNotes>More information at http://www.tolitech.com.br</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Title>Tolitech.CodeGenerator.Notification</Title>
   </PropertyGroup>
 
   <ItemGroup>

@@ -132,6 +132,22 @@ namespace Tolitech.CodeGenerator.Notification.Tests
             Assert.True(result.IsValid);
         }
 
+        [Fact(DisplayName = "NotificationResult - InsertMessageErrorWithTwoParameters - Invalid")]
+        public void NotificationResult_InsertMessageErrorWithTwoParameters_Valid()
+        {
+            var result = new NotificationResult();
+            result.InsertMessage(0, "message", "error");
+            Assert.False(result.IsValid);
+        }
+
+        [Fact(DisplayName = "NotificationResult - InsertMessageErrorWithOneParameter - Invalid")]
+        public void NotificationResult_InsertMessageErrorWithOneParameter_Valid()
+        {
+            var result = new NotificationResult();
+            result.InsertMessage(0, "message", "error");
+            Assert.False(result.IsValid);
+        }
+
         [Fact(DisplayName = "NotificationResult - InsertMessageWithObject - Invalid")]
         public void NotificationResult_InsertMessage_Invalid()
         {
@@ -214,6 +230,14 @@ namespace Tolitech.CodeGenerator.Notification.Tests
             Assert.False(resultOne.IsValid);
         }
 
+        [Fact(DisplayName = "NotificationResult - AddMessageError - Invalid")]
+        public void NotificationResult_AddMessageError_Invalid()
+        {
+            var result = new NotificationResult();
+            result.AddMessage("message", "error");
+            Assert.False(result.IsValid);
+        }
+
         [Fact(DisplayName = "NotificationResult - ClearMessages - Valid")]
         public void NotificationResult_ClearMessages_Valid()
         {
@@ -290,6 +314,42 @@ namespace Tolitech.CodeGenerator.Notification.Tests
             var result = new NotificationResult();
             result.Data = new { ok = true };
             Assert.True(result.Data != null);
+        }
+
+        [Fact(DisplayName = "NotificationResult - Value - Valid")]
+        public void NotificationResult_Value1_Valid()
+        {
+            var result = new NotificationResult<int>(10);
+            Assert.True(result.Value == 10);
+        }
+
+        [Fact(DisplayName = "NotificationResult - Value - Valid")]
+        public void NotificationResult_Value2_Valid()
+        {
+            var result = new NotificationResult<int>();
+            result.SetValue(10);
+            Assert.True(result.Value == 10);
+        }
+
+        [Fact(DisplayName = "NotificationResult - Create1 - Valid")]
+        public void NotificationResult_Create1_Valid()
+        {
+            var result = NotificationResult.Ok();
+            Assert.True(result.IsValid);
+        }
+
+        [Fact(DisplayName = "NotificationResult - Create2 - Valid")]
+        public void NotificationResult_Create2_Valid()
+        {
+            var result = NotificationResult<int>.Ok();
+            Assert.True(result.IsValid);
+        }
+
+        [Fact(DisplayName = "NotificationResult - Create3 - Valid")]
+        public void NotificationResult_Create3_Valid()
+        {
+            var result = NotificationResult<int>.Ok(10);
+            Assert.True(result.IsValid && result.Value == 10);
         }
     }
 }
